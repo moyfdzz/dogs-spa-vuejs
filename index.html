@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<title>Dogs SPA Vuejs Lab 3</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="app">
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Dog SPA</a>
+		</nav>
+
+		<div class="jumbotron text-center">
+			<div class="container">
+				<h1 class="display-3">Fetch a dog image</h1>
+			</div>
+		</div>
+
+		<button class="btn btn-primary" v-on:click="changeFeatures">Toggle Features</button>
+		
+		<div>
+			<div class="row mt-5 mx-5" v-if="showFeatures">
+				<div class="col-sm-4">
+					<div class="card">
+						<div class= "card-header">
+							Search a dog's image by breed
+						</div>
+						<div class="card-body">
+							<div class="container">
+								<div class="input-group input-breed">
+									<input class='form-control' v-model="breed" @keyup.enter="getDog" placeholder="Type a dog's breed">
+									<button v-on:click="getDog" class='btn btn-primary'>Search</button>
+								</div>
+								<div v-if="showError" class="text-center my-5">
+									<h2>The dog's breed {{foundBreed}} wasn't found in the database.</h2>
+								</div>
+								<div v-if="showResult" class='result'>
+									<h2 class="my-5">Here's a photo of a {{foundBreed}}</h2>
+									<img class="image img-thumbnail" v-bind:src="dogImage">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
